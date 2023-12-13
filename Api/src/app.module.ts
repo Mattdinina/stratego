@@ -4,6 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GameModule } from './games/games.module';
 
+// fait par matthias B.
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({

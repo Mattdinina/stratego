@@ -1,21 +1,31 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { PieceColor } from '../enums/piece-color.enum';
 
+// entity : fait par matthias b.
 @Entity()
 export class Game {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  nameOfPiece: string;
+  redPlayerName: string;
 
   @Column()
-  valueOfPiece: number;
+  bluePlayerName: string;
 
   @Column({
     type: 'enum',
     enum: PieceColor,
     default: PieceColor.RED,
   })
-  color: PieceColor;
+  activePlayer: PieceColor;
+
+  @Column()
+  blueSetup: string;
+
+  @Column()
+  redSetup: string;
+
+  @Column()
+  currentBoard: string;
 }

@@ -5,6 +5,8 @@ import { UpdateGameDto } from './dto/update-game.dto';
 import { DataSource } from 'typeorm';
 import { InjectDataSource } from '@nestjs/typeorm';
 
+// fait par matthias B.
+
 @Controller('games')
 export class GamesController {
   constructor(@InjectDataSource() private bdd : DataSource) {}
