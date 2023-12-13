@@ -14,11 +14,11 @@ export class GamesController {
  
 @Post()
 postEvent(@Body() eventData: any) {
-  const { id, nameOfPiece, valueOfPiece, color } = eventData;
+  const { id, activePlayer, redPlayerName, bluePlayerName, blueSetup, redSetup, currentBoard } = eventData;
 
   return this.bdd.query(
-    `INSERT INTO game (id, nameOfPiece, valueOfPiece, color) VALUES (?, ?, ?, ?)`,
-    [id, nameOfPiece, valueOfPiece, color]
+    `INSERT INTO game (id, activePlayer, redPlayerName, bluePlayerName, blueSetup, redSetup, currentBoard) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    [id, activePlayer, redPlayerName, bluePlayerName, blueSetup, redSetup, currentBoard]
   );
 }
 

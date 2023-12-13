@@ -20,12 +20,12 @@ export class Game {
   })
   activePlayer: PieceColor;
 
-  @Column()
+  @Column({nullable: true})
   blueSetup: string;
 
-  @Column()
+  @Column({nullable: true})
   redSetup: string;
 
-  @Column()
+  @Column({nullable: true})
   currentBoard: string;
 }
