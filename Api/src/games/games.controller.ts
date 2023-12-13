@@ -4,6 +4,7 @@ import { CreateGameDto } from './dto/create-game.dto';
 import { UpdateGameDto } from './dto/update-game.dto';
 import { DataSource } from 'typeorm';
 import { InjectDataSource } from '@nestjs/typeorm';
+import { Query } from '@nestjs/common';
 
 // fait par matthias B.
 
@@ -27,18 +28,23 @@ postEvent(@Body() eventData: any) {
     return this.bdd.query(`SELECT * FROM game`);
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.gamesService.findOne(+id);
-  // }
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.bdd.query(`SELECT * FROM game WHERE id = ?`, [id])
+  }
 
   @Patch(':id')
-  patchEvent(@Param('id') id: string, @Body() bodyPatch: any) {
-    const { nom_colonne, nouvelle_valeur } = bodyPatch;
-    const query = `UPDATE game SET ${nom_colonne} = ? WHERE id = ?`;
-  
-    return this.bdd.query(query, [nouvelle_valeur, id]);
-  }
+  patchEvent(
+  @Param('id') id: string,
+  @Query('color') color: string,  
+  @Body() bodyPatch: any
+) {
+  const { nouvelle_valeur } = bodyPatch;
+
+  const query = `UPDATE game SET currentBoard = ? WHERE id = ? AND activePlayer = ?`;
+
+  return this.bdd.query(query, [nouvelle_valeur, id, color]);
+}
 
   @Delete(':id')
   remove(@Param('id') id: string) {
