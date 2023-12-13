@@ -9,10 +9,16 @@ import { InjectDataSource } from '@nestjs/typeorm';
 export class GamesController {
   constructor(@InjectDataSource() private bdd : DataSource) {}
 
-  @Post()
-  create(@Body() createGameDto: CreateGameDto) {
-    return this.bdd.query();
-  }
+ 
+@Post()
+postEvent(@Body() eventData: any) {
+  const { id, nameOfPiece, valueOfPiece, color } = eventData;
+
+  return this.bdd.query(
+    `INSERT INTO game (id, nameOfPiece, valueOfPiece, color) VALUES (?, ?, ?, ?)`,
+    [id, nameOfPiece, valueOfPiece, color]
+  );
+}
 
   @Get()
   findAll() {
@@ -25,8 +31,11 @@ export class GamesController {
   // }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGameDto: UpdateGameDto) {
-    return this.bdd.query();
+  patchEvent(@Param('id') id: string, @Body() bodyPatch: any) {
+    const { nom_colonne, nouvelle_valeur } = bodyPatch;
+    const query = `UPDATE game SET ${nom_colonne} = ? WHERE id = ?`;
+  
+    return this.bdd.query(query, [nouvelle_valeur, id]);
   }
 
   @Delete(':id')
