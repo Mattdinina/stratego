@@ -1,7 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { PieceColor } from '../enums/piece-color.enum';
 import { state } from '../enums/state';
-// entity : fait par matthias b.
+// fait par matthias b.
+// entity : Sert à créer la table "game" dans la Base de données Stratego, avec les colonnes correspondantes ainsi que leur type (int, string etc)
 @Entity()
 export class Game {
   @PrimaryGeneratedColumn()
@@ -20,13 +21,13 @@ export class Game {
   })
   activePlayer: PieceColor;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   blueSetup: string;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   redSetup: string;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   currentBoard: string;
 
   @Column({

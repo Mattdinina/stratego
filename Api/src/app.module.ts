@@ -6,6 +6,9 @@ import { GameModule } from './games/games.module';
 import { EventsModule } from './events/events.module';
 import { HintsModule } from './hints/hints.module';
 
+//Fait par matthias B.
+// Module : Sert à tout réunir : service, controlleur, provider... tout est importé dans ce fichier.
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -25,4 +28,4 @@ import { HintsModule } from './hints/hints.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

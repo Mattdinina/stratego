@@ -7,47 +7,35 @@ import { InjectDataSource } from '@nestjs/typeorm';
 import { Query } from '@nestjs/common';
 
 // fait par matthias B.
+// Controlleur. Crud de "game"
 
 @Controller('games')
 export class GamesController {
-  constructor(@InjectDataSource() private bdd : DataSource) {}
+  constructor(private readonly gamesService: GamesService) { }
 
- 
-@Post()
-postEvent(@Body() eventData: any) {
-  const { id, activePlayer, redPlayerName, bluePlayerName, blueSetup, redSetup, currentBoard } = eventData;
-
-  return this.bdd.query(
-    `INSERT INTO game (id, activePlayer, redPlayerName, bluePlayerName, blueSetup, redSetup, currentBoard) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-    [id, activePlayer, redPlayerName, bluePlayerName, blueSetup, redSetup, currentBoard]
-  );
-}
+  @Post()
+  async create(@Body() createGameDto: CreateGameDto) {
+    return await this.gamesService.create(createGameDto);
+  }
 
   @Get()
-  findAll() {
-    return this.bdd.query(`SELECT * FROM game`);
+  async findAll() {
+    return await this.gamesService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.bdd.query(`SELECT * FROM game WHERE id = ?`, [id])
+  async findOne(@Param('id') id: string) {
+    return await this.gamesService.findOne(id);
   }
 
   @Patch(':id')
-  patchEvent(
-  @Param('id') id: string,
-  @Query('color') color: string,  
-  @Body() bodyPatch: any
-) {
-  const { nouvelle_valeur } = bodyPatch;
-
-  const query = `UPDATE game SET currentBoard = ? WHERE id = ? AND activePlayer = ?`;
-
-  return this.bdd.query(query, [nouvelle_valeur, id, color]);
-}
+  async update(@Param('id') id: string, @Body() updateGameDto: UpdateGameDto) {
+    const { color, nouvelle_valeur } = updateGameDto;
+    return await this.gamesService.update(id, color, nouvelle_valeur);
+  }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.bdd.query(`DELETE FROM game WHERE id = ?`, [id]);
+  async remove(@Param('id') id: string) {
+    return await this.gamesService.remove(id);
   }
 }
