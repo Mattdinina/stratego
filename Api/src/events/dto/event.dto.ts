@@ -7,5 +7,7 @@ export class EventDto {
     type: EventType;
 
     date: Date;
+
+    player?: string;
 }
 
