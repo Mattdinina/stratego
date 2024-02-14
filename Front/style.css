@@ -1,0 +1,84 @@
+#player-names {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+#game-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.cell {
+    width: 80%;
+    height: 40px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 10px;
+    font-weight: bold;
+    border: 2px solid #ccc;
+    cursor: pointer;
+}
+
+.number {
+    margin: 2px; /* Marge pour l'espace autour du numéro */
+}
+
+.red {
+    background-color: #ff8080;
+}
+
+.blue {
+    background-color: #8080ff;
+}
+
+body {
+    background-color: #b782c4;
+}
+
+button {
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #06d6a0;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+input {
+    /*  display: none; */
+      max-width: 400px;
+      margin: 30px auto;
+      background-color: #26547C;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+  }
+
+  .logo {
+    width: 30%;
+    height: auto;
+  }
+
+  .logo-container {
+    display: center;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0); /* Bandeau semi-transparent */
+    padding: 10px 0; /* Padding vertical réduit pour un bandeau fin */
+    width: 100%; /* Largeur maximale */
+    box-sizing: border-box; /* Assure que le padding est inclus dans la largeur */
+    justify-content: center;
+  }

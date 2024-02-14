@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Stratego Game</title>
+</head>
+<body>
+    <div className="container">
+        <img src="C:/Stratego/Stratego_logo.svg.png"  class="logo" alt="logo"/>
+        </div>
+    <div id="player-names">
+        <label for="player1">joueur 1:</label>
+        <input class="red" type="text" id="player1" placeholder="Nom joueur 1">
+        <label " for="player2">joueur 2:</label>
+        <input class="blue" type="text" id="player2" placeholder="Nom joueur 2">
+        <button  onclick="startGame()"> Play !</button><!-- éxecute la fonction start et commence le jeu (uniquement si les 2 nom ont été renseigné )  -->
+        <div id="tour"></div>     
+    </div>
+    <div id="game-container"></div>
+    <button onclick="resetGame()"> Reset </button>  <!-- éxecute la fonction reset -->
+    <button onclick="fill(currentPlayer)">Shuffle</button> <!-- éxecute la fonction shuffle  -->
+    <script src="script.js"></script>
+</body>
+</html>
